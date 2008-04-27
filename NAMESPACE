@@ -1,0 +1,28 @@
+export(basicProfile,
+       expandedProfile,
+       GOTermsList,
+       getAncestorsLst,
+       getGOLevel,
+       compSummary,
+       equivSummary,
+       fitGOProfile,
+       compareGOProfiles,
+       compareProfilesLists,
+       compareGeneLists,
+       plotProfiles,
+       printProfiles,
+       mergeProfilesLists,
+       as.GOTerms.frame,
+       as.GOTerms.list,
+       BioCpack2EntrezIDS,
+       BioCpack2Profiles,
+       BioCprobes2Entrez,
+       GOTermsFrame2GOTermsList,
+       expandTerm,
+       expandedLevel,
+       equivalentGOProfiles)
+
+S3method(equivalentGOProfiles, GOProfileHtest)
+S3method(equivalentGOProfiles, list)
+S3method(equivalentGOProfiles, ExpandedGOProfile)
+
