@@ -7,15 +7,15 @@
 compSummary(l, decs = 6)
 }
 \arguments{
-  \item{l}{A list of comparison results as returned by a call to \texttt{compareGenelists}}
+  \item{l}{A list of comparison results as returned by a call to \code{compareGenelists}}
   \item{decs}{Number of decimal places to use in the output}
 }
 \value{
 A data frame with the summarized results of each comparison.
-The values contained are: \texttt{Sqr.Eucl.Dist}: The squared euclidean distance, 
-\texttt{Standard Err}: The standard error estimate, \texttt{pValue} p value of the test, 
-\texttt{low conf.int}Lower value for the desired confidence interval, 
-\texttt{up conf.int}Upper value for the desired condfidence interval.
+The values contained are: \code{Sqr.Eucl.Dist}: The squared euclidean distance, 
+\code{Standard Err}: The standard error estimate, \code{pValue} p value of the test, 
+\code{low conf.int}Lower value for the desired confidence interval, 
+\code{up conf.int}Upper value for the desired condfidence interval.
 }
 \author{Alex Sanchez}
 \examples{

@@ -3,7 +3,7 @@
 \title{Compares two of expanded profiles}
 \description{
 This function compares two lists (``sensu R lists'') of expanded profiles by successive 
-calls to function \texttt{compareGOProfiles} following 
+calls to function \code{compareGOProfiles} following 
 the methodology developed by Sanchez, Salicru and Ocan\~a (2007)
 }
 \usage{

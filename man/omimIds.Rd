@@ -10,17 +10,33 @@
 \alias{recessiveIdsNCBI}
 \docType{data}                                                  
 \title{Entrez identifiers for disease-related genes in the OMIM database}
-\description{Entrez identifiers for several lists of genes related with human disease.
-\item \code{diseaseIds} contains the Entrez identifiers corresponding to disease-related genes found in the 
-OMIM database. This list has been manually curated by Nuria Lopez-Bigas et al. who kindly provided it to us. 
-\item \code{morbidmapIds} contains the Entrez identifiers for all the genes in the morbidmap table. 
-This list would correspond to disease-related genes if there had been no manual curation, as in the previous list ('diseaseIds')
-\item \code{dominantIds} contains the Entrez identifiers for dominant genes after manual curation by Nuria Lopez-Bigas who has kindly allowed us to include them in the package.
-\item \code{recessiveIds} contains the Entrez identifiers for recessive genes after manual curation by Nuria Lopez-Bigas who has kindly allowed us to include them in the package.
-\item \code{dominantIdsEBI} contains the Entrez identifiers for dominant genes in the EBI version of the OMIM database recovered using SRS with the term 'dominant' in the KEYWORDS field.
-\item \code{recessiveIdsEBI} contains the Entrez identifiers for recessive genes in the EBI version of the OMIM database recovered using SRS with the term 'recessive' in the KEYWORDS field.
-\item \code{dominantIdsNCBI} contains the Entrez identifiers for dominant genes in the NCBI version of the OMIM database recovered using ENTREZ with the term 'dominant' in the CLINICAL field.
-\item \code{recessiveIdsNCBI} contains the Entrez identifiers for recessive genes in the NCBI version of the OMIM database recovered using ENTREZ with the term 'recessive' in the CLINICAL field.
+\description{Entrez identifiers for several lists of genes related with human
+disease. 
+\describe{
+\item{\code{diseaseIds}}{contains the Entrez identifiers corresponding to
+  disease-related genes found in the OMIM database. This list has been manually
+  curated by Nuria Lopez-Bigas et al. who kindly provided it to us.}
+\item{\code{morbidmapIds}}{contains the Entrez identifiers for all the genes
+  in the morbidmap table. This list would correspond to disease-related genes
+  if there had been no manual curation, as in the previous list
+  ('diseaseIds').}
+\item{\code{dominantIds}}{ontains the Entrez identifiers for dominant genes
+after manual curation by Nuria Lopez-Bigas who has kindly allowed us to
+include them in the package.}
+\item{\code{recessiveIds}}{contains the Entrez identifiers for recessive genes
+after manual curation by Nuria Lopez-Bigas who has kindly allowed us to
+include them in the package.}
+\item{\code{dominantIdsEBI}}{contains the Entrez identifiers for dominant
+genes in the EBI version of the OMIM database recovered using SRS with the
+term 'dominant' in the KEYWORDS field.}
+\item{\code{recessiveIdsEBI}}{contains the Entrez identifiers for recessive genes in the EBI version of the OMIM database recovered using SRS with the term 'recessive' in the KEYWORDS field.}
+\item{\code{dominantIdsNCBI}}{contains the Entrez identifiers for dominant
+genes in the NCBI version of the OMIM database recovered using ENTREZ with the
+term 'dominant' in the CLINICAL field.}
+\item{\code{recessiveIdsNCBI}}{contains the Entrez identifiers for recessive
+genes in the NCBI version of the OMIM database recovered using ENTREZ with the
+term 'recessive' in the CLINICAL field.}
+}
 }
 \details{Lopez-Bigas et al. analyzed the distribution of functional categories in genes causing disease in human.
 They did several comparisosn which can also be done using \code{goProfiles}. In order to perform these comparisons
