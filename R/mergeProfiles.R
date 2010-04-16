@@ -15,8 +15,10 @@ function(profile1, profile2, emptyCats=F, profNames=NULL){
           stop("ERROR: Profiles have different row names")
     }else{
         merged<-cbind(profile1,profile2$Frequency)
-        attr(merged,"numGenes1")<-attr(profile1,"numGenes")
-        attr(merged,"numGenes2")<-attr(profile2,"numGenes")
+        attr(merged,"numGenes1")<-ngen1 <- attr(profile1,"numGenes")
+        attr(merged,"numGenes2")<-ngen2 <- attr(profile2,"numGenes")
+        attr(merged,"numGenes")<-c(ngen1, ngen2)
+        attr(merged,"numNAs") <- c(attr(profile1,"numNAs"),attr(profile2,"numNAs")) 
         if (!emptyCats){
           sumFreqs<-profile1$Frequency+profile2$Frequency
           merged<-merged[sumFreqs!=0,]
@@ -26,6 +28,7 @@ function(profile1, profile2, emptyCats=F, profNames=NULL){
         else
             names(merged)<-c(names(profile1)[1:2],profNames[1], profNames[2])
     }
+  class(merged) <- class(profile1)
   return(merged)
 }
 

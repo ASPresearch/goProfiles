@@ -1,5 +1,5 @@
 `as.GOTerms.list` <-
-function (genelist, probeType, orgPackage=NULL, anotPkg=NULL, onto="any", na.rm=FALSE)
+function (genelist, probeType, orgPackage=NULL, anotPkg=NULL, onto="any", na.rm=TRUE)
 {
   switch (probeType,
   "Entrez" =

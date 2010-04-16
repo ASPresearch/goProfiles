@@ -1,5 +1,5 @@
 `BioCpack2EntrezIDS` <-
-function (anotPkg, na.rm=FALSE)
+function (anotPkg, na.rm=TRUE)
 {
   stopifnot(require(anotPkg, character.only=TRUE, quietly=TRUE, warn.conflicts=FALSE))
   envENTREZID<-paste(anotPkg, "ENTREZID",sep="")

@@ -1,10 +1,10 @@
 `basicProfile` <-
 function (genelist, idType="Entrez", onto="ANY", level=2, orgPackage=NULL, anotPackage =NULL, 
-	ord=TRUE, multilevels=NULL, empty.cats = TRUE, cat.names = TRUE, na.rm=FALSE) 
+	ord=TRUE, multilevels=NULL, empty.cats = TRUE, cat.names = TRUE, na.rm=TRUE) 
 
 {
 oneProfile<-function(GOTermsList, onto, level=2, multilevels=NULL, 
-                     empty.cats = FALSE, cat.names = FALSE, na.rm=FALSE){
+                     empty.cats = FALSE, cat.names = FALSE){
   funcProfile<-NULL
   ancestors<-unlist(getAncestorsLst(GOTermsList,onto))
   if (!is.null(ancestors)){
@@ -24,12 +24,15 @@ oneProfile<-function(GOTermsList, onto, level=2, multilevels=NULL,
      }else 
             {on.exit(cat("No ancestors found for this GOTermsList"))}
   if (!is.null(funcProfile)){
-    attr(funcProfile,"numGenes")<-length(GOTermsList)
+    attr(funcProfile,"numGenes")<-attr(GOTermsList,"numGenes")
+    attr(funcProfile,"numNAs")<-attr(GOTermsList,"numNAs")
     attr(funcProfile,"ontology")<-onto}
+  class(funcProfile) <-c("BasicGOProfile", class(funcProfile))
 return(funcProfile)
 }
     if (idType %in% c("Entrez", "BioCprobes", "GOTermsFrame"))
-        GOList <- as.GOTerms.list (genelist, idType, orgPackage, anotPackage)
+        GOList <- as.GOTerms.list (genelist, idType, orgPackage, anotPackage,
+                                   na.rm=na.rm)
     else
          {on.exit(cat("Gene identifiers are not understood by the program"))
         myprofile<-NULL}

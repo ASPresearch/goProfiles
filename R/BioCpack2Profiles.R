@@ -1,5 +1,5 @@
 `BioCpack2Profiles` <-
-function (anotPkg, orgPackage, level=2, na.rm=FALSE, expanded=FALSE){
+function (anotPkg, orgPackage, level=2, na.rm=TRUE, expanded=FALSE){
     stopifnot(require(anotPkg, character.only=TRUE, quietly=TRUE, warn.conflicts=FALSE))
     stopifnot(require(orgPackage, character.only=TRUE, quietly=TRUE, warn.conflicts=FALSE))
 

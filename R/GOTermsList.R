@@ -1,5 +1,5 @@
 `GOTermsList` <-
-function (LLids, onto="any", evid="any", na.rm=FALSE, orgPkg){
+function (LLids, onto="any", evid="any", na.rm=TRUE, orgPkg){
 
 stopifnot(require(orgPkg, character.only = TRUE, quietly=TRUE, warn.conflicts=FALSE))
 #
@@ -43,10 +43,15 @@ for(i in 1:length(GOIDList)){
   if (is.null(GOIDList[[i]][[1]])) GOIDList[i]<-NA
 }
 
+ NAs<-sapply(GOIDList, function(l) is.na(l[[1]]))
+ num.NAs <- sum(NAs)
+
 if (na.rm){
-  NAs<-sapply(GOIDList, function(l) is.na(l[[1]]))
   GOIDList<-GOIDList[!NAs]
 }
+
+attr(GOIDList,"numNAs") <- num.NAs
+attr(GOIDList, "numGenes") <- length(LLids)-num.NAs
 return(GOIDList)
 }
 

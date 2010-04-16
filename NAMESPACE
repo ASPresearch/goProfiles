@@ -20,9 +20,16 @@ export(basicProfile,
        GOTermsFrame2GOTermsList,
        expandTerm,
        expandedLevel,
-       equivalentGOProfiles)
+       equivalentGOProfiles,
+       ngenes)
 
 S3method(equivalentGOProfiles, GOProfileHtest)
 S3method(equivalentGOProfiles, list)
 S3method(equivalentGOProfiles, ExpandedGOProfile)
+
+S3method(ngenes, numeric)
+S3method(ngenes, matrix)
+S3method(ngenes, ExpandedGOProfile)
+S3method(ngenes, BasicGOProfile)
+
 

@@ -12,7 +12,7 @@ and formats the output into a list whose components -one per Entrez term- contai
 specific GO identifiers associated with this term.
 }
 \usage{
-GOTermsList(LLids, onto = "any", evid = "any", na.rm = FALSE, orgPkg )
+GOTermsList(LLids, onto = "any", evid = "any", na.rm = TRUE, orgPkg )
 getAncestorsLst(GOtermslist, onto, unique.ancestor=TRUE, na.rm=TRUE, combine=TRUE)
 getGOLevel(onto, level)
 }
