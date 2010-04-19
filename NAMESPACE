@@ -21,7 +21,8 @@ export(basicProfile,
        expandTerm,
        expandedLevel,
        equivalentGOProfiles,
-       ngenes)
+       ngenes,
+       fisherGOProfiles)
 
 S3method(equivalentGOProfiles, GOProfileHtest)
 S3method(equivalentGOProfiles, list)
@@ -29,7 +30,11 @@ S3method(equivalentGOProfiles, ExpandedGOProfile)
 
 S3method(ngenes, numeric)
 S3method(ngenes, matrix)
-S3method(ngenes, ExpandedGOProfile)
 S3method(ngenes, BasicGOProfile)
+S3method(ngenes, ExpandedGOProfile)
 
+S3method(fisherGOProfiles, numeric)
+S3method(fisherGOProfiles, matrix)
+S3method(fisherGOProfiles, BasicGOProfile)
+S3method(fisherGOProfiles, ExpandedGOProfile)
 
