@@ -41,7 +41,7 @@ function (onto, level){
           }
         }
           
-    return(GOLevel)
+    return(unique(GOLevel))
      }
   }
 }
