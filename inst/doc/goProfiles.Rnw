@@ -88,8 +88,8 @@ data(prostateIds)
 @
 \item Next a functional profile is build for each list. For simplicity it is build for the MF ontology only.
 <<basicProfilesMF>>=
-welsh.MF <- basicProfile (welsh01EntrezIDs, onto="MF", level=2, orgPackage="org.Hs.eg.db") 
-singh.MF <- basicProfile (singh01EntrezIDs, onto="MF", level=2, orgPackage="org.Hs.eg.db") 
+welsh.MF <- basicProfile (welsh01EntrezIDs[1:100], onto="MF", level=2, orgPackage="org.Hs.eg.db") 
+singh.MF <- basicProfile (singh01EntrezIDs[1:100], onto="MF", level=2, orgPackage="org.Hs.eg.db") 
 welsh.singh.MF <-mergeProfilesLists(welsh.MF, singh.MF, profNames=c("Welsh", "Singh"))
 printProfiles(welsh.singh.MF, percentage=TRUE)
 @
@@ -103,7 +103,7 @@ plotProfiles (welsh.MF, aTitle="Welsh (2001). Prostate cancer data")
 \end{figure}
 Changing the parameter \Robj{onto} to '\Robj{ANY}' instead of '\Robj{MF}' will compute profiles for the three ontologies.
 <<basicProfilesANY>>=
-welsh <- basicProfile (welsh01EntrezIDs, onto="ANY", level=2, orgPackage="org.Hs.eg.db") 
+welsh <- basicProfile (welsh01EntrezIDs[1:100], onto="ANY", level=2, orgPackage="org.Hs.eg.db") 
 @
 \item A visual comparison of profiles can be useful to give hints about the difference between them.
 \begin{figure}[htbp]
@@ -118,14 +118,33 @@ plotProfiles (welsh.singh.MF, percentage=T,aTitle="Welsh vs Singh", legend=T)
 Notice that the comparison rebuilds the profiles, that is the input for the computation
 are the two lists of genes not the profiles.
 <<compareDiff1>>=
-compared.welsh.singh.01.MF <- compareGeneLists (welsh01EntrezIDs, singh01EntrezIDs, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+compared.welsh.singh.01.MF <- compareGeneLists (welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100], onto="MF", level=2, orgPackage="org.Hs.eg.db")
 print(compSummary(compared.welsh.singh.01.MF))
 @
-\item The reason to compare two lists similar studies may be to combine them. 
+%\item If one finds that the lists are globally different it may be interesting to check out to which categories may be this difference attributed. 
+%Recent versions of \emph{goProfiles} (from 1.11.02) allow to do a Fisher test on every category in the level of the profile.
+%<<fisherGOProf1>>=
+%list1 <- welsh01EntrezIDs[1:100]
+%list2 <- singh01EntrezIDs[1:100]
+%commProf <- basicProfile(intersect(list1, list2), onto="MF", level=2, orgPackage="org.Hs.eg.db")$MF
+%fisherGOProfiles(welsh.MF$MF, singh.MF$MF, commProf, method="holm")
+%@
+\item The reason to compare two lists from similar studies may be to combine them. 
 In this case what is more meaningful to do is an equivalence test, instead of a difference test as above.
 <<compareEquiv1>>=
-eqws01<-equivalentGOProfiles(compared.welsh.singh.01.MF, simplify=FALSE)
-print(es<-equivSummary(eqws01))
+data(prostateIds)
+expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
+commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+
+equivMF <-equivalentGOProfiles (expandedWelsh[['MF']], 
+                          qm  = expandedSingh[['MF']], 
+                          pqn0= commonExpanded[['MF']])
+print(equivSummary(equivMF, decs=5))
+
 @
 \end{itemize}
 

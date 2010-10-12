@@ -57,5 +57,12 @@ the number of genes of all profiles is returned if this argument is absent}
 \author{Jordi Ocana}
 
 \examples{
-
+require("org.Hs.eg.db")
+data(prostateIds)        # "singh01EntrezIDs", "singh05EntrezIDs", "welsh01EntrezIDs", "welsh05EntrezIDs"
+# To improve speed, use only the first 100 genes:
+list1 <- welsh01EntrezIDs[1:100]
+prof1 <- expandedProfile(list1, onto="MF", level=2, orgPackage="org.Hs.eg.db", na.rm=TRUE)$MF
+length(list1)
+# Only a subset of the initial gene list are annotated in the profile
+ngenes(prof1)
 }

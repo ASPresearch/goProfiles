@@ -29,10 +29,16 @@ Journal of Statistical Planning and Inference, 2007}
 \author{Alex Sanchez}
 \seealso{\code{\link{compareGeneLists}}, \code{\link{expandedProfile}} }
 \examples{
-require(goProfiles)
-data(sampleProfiles)
-comparedMF<- compareProfilesLists (expandedWelsh01, expandedSingh01, relationType="DISJOINT")
-print(comparedMF)
-print(compSummary(comparedMF))
+#require(goProfiles)
+#data(ProstateIds)
+#expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
+#                        level=2, orgPackage="org.Hs.eg.db")
+#expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="MF",
+#                        level=2, orgPackage="org.Hs.eg.db")
+#commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
+#commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+#comparedMF<- compareProfilesLists (expandedWelsh, expandedSingh, commonExpanded, relationType="COMMON")
+#print(comparedMF)
+#print(compSummary(comparedMF))
 }
 \keyword{htest}

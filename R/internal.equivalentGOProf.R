@@ -21,7 +21,7 @@ internal.equivalentGOProf <- function(pn, qm, pqn0, n, m, n0, confidence, d0, eq
       # equivalence of two intersecting profiles (some genes are specific of pn, some are specific of qm, and some common genes are profiled in pqn0)
       d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
     }
-    s <- sum((contrPn + contrQm) > 0) # classes being compared in the profiles
+    s <- sum((contrPn[,3] + contrQm[,3]) > 0) # classes being compared in the profiles
     if (is.null(d0))
       d0 <- s * equivEpsilon * equivEpsilon
 

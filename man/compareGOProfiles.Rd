@@ -94,12 +94,18 @@ Statistical Planning and Inference, 2007.}
 \author{Jordi Ocana}
 
 \examples{
-data(sampleProfiles)
-comparedMF <-compareGOProfiles (pn=expandedWelsh01[['MF']], 
-                          qm  = expandedSingh01[['MF']], 
-                          pqn0= commonExpandedWelsh01Singh01[['MF']])
+data(prostateIds)
+expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
+commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+comparedMF <-compareGOProfiles (pn=expandedWelsh, 
+                          qm  = expandedSingh, 
+                          pqn0= commonExpanded)
 print(comparedMF)
-print(compSummary(comparedMF))
+# print(compSummary(comparedMF))
 
 }
 \keyword{htest}

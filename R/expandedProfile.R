@@ -5,8 +5,8 @@ function(genelist, idType="Entrez", onto="ANY", level=2,orgPackage=NULL, anotPac
 
 oneProfile<-function(GOTermsList, onto="ANY", level=2, multilevels=NULL,
                     ord=TRUE, na.rm=TRUE, percentage=TRUE){   
-    ancestors<-getAncestorsLst(GOTermsList,onto)
-    if (!is.null(ancestors)){
+    ancestorsList<-getAncestorsLst(GOTermsList,onto)
+    if (!is.null(ancestorsList)){
       if (is.null(multilevels))
         ontoLevel<- getGOLevel (onto,level)
       else
@@ -17,13 +17,14 @@ oneProfile<-function(GOTermsList, onto="ANY", level=2, multilevels=NULL,
      on.exit(cat(errorMsg))
         expProf<-NULL}
     else{
-        numGenes <- length(ancestors) 
+        numGenes <- length(ancestorsList) 
         numProfiles <- 0
         # exp.profile <- data.frame(frec=rep (0,length(ontoLevel)))
         exp.profile <- matrix(nrow=length(ontoLevel),ncol=numGenes)
         nams<-character(0)
-        for (i in 1:length(ancestors))
-        {   my.profile<-rawProfile(ancestors[[i]],ontoLevel, TRUE)
+        for (i in 1:length(ancestorsList))
+        {   my.profile<-rawProfile(ancestorsList[[i]],ontoLevel, TRUE)
+            # empty.cats is ot used anymore in rawProfile so it should work fine
             if (!is.null(my.profile)){
                 exp.profile[,i]<- my.profile
                 nams<-c(nams,GOTermsList[i])
@@ -51,7 +52,10 @@ oneProfile<-function(GOTermsList, onto="ANY", level=2, multilevels=NULL,
           expProf<- as.ExpandedGOProfile(expProf)
       else
           expProf<- as.data.frame(expProf)
-      attr(expProf,"numGenes")<-length(GOTermsList)
+      attr(expProf,"numGenes")<-  numGenes # = length(ancestorsList) 
+                                        # use length(ancestorsList) instead of length(GOTermsList)
+                                        # to account for the cases where ancestors are missing in "onto"
+                                        # length(GOTermsList)
       attr(expProf,"ontology")<-onto}
 return(expProf)
 }

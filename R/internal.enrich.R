@@ -29,21 +29,25 @@ internal.enrich <- function(pn, qm, pqn0, n, m, n0, method, ...)
     pn <- fullGOProfile(pn, fullNams)
     qm <- fullGOProfile(qm, fullNams)
     pqn0 <- fullGOProfile(pqn0, fullNams)
-    contrPn <- contractedProfile.default(pn)
+    contrPn <- contractedProfile.default(pn)[,3]
 
     if (is.null(qm)) {
         # compare a profile with a subset of it
-        contrPQn0 <- contractedProfile.default(pqn0)
-        internal.enrichProfile(contrPn * n - contrPQn0 * n0, contrPQn0 * n0, n - n0, n0, method, ...)
+        contrPQn0 <- contractedProfile.default(pqn0)[,3]
+        internal.enrichProfile(contrPn - contrPQn0, contrPQn0, n - n0, n0, method, ...)
     }
     else if (is.null(pqn0)) {
         # compare two disjoint profiles (no genes in common)
-        contrQm <- contractedProfile.default(qm)
-        internal.enrichProfile(contrPn * n, contrQm * m, n, m, method, ...)
+        contrQm <- contractedProfile.default(qm)[,3]
+        internal.enrichProfile(contrPn, contrQm, n, m, method, ...)
     }
     else {
         # compare two intersecting profiles (n genes are specific of pn, m are specific of qm,
         # and n0 common genes are profiled in pqn0)
-        internal.enrichProfile(contrPn * n - contractedProfile.default(pqn0) * n0, contractedProfile.default(qm) * m, n - n0, m, method, ...)
+        internal.enrichProfile(
+          contrPn - contractedProfile.default(pqn0)[,3],
+          contractedProfile.default(qm)[,3],
+          n - n0, m, method, ...
+        )
     }
 }

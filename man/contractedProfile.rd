@@ -9,15 +9,14 @@
 }
 
 \usage{
-contractedProfile(prof, \ldots)
+contractedProfile(prof, nams = NULL)
 \method{contractedProfile}{ExpandedGOProfile}(prof, nams = NULL)
-\method{contractedProfile}{default}(pGO, nams = NULL)
+\method{contractedProfile}{default}(prof, nams = NULL)
 }
 
 \arguments{
-  \item{prof}{ an expanded GO profile, i.e. and object of class 'ExpandedGOProfile',
-  see the "details" section }
-  \item{pGO}{ a numeric vector assimilable to an expanded profile, see the "details" section }
+  \item{prof}{ an expanded GO profile, i.e. and object of class 'ExpandedGOProfile', or
+  a numeric vector assimilable to an expanded profile, see the "details" section }
   \item{nams}{ optionally, the names of the annotated combinations of GO nodes
   whose frequency is represented in the expanded profile, see the "details" section }
 }
@@ -51,22 +50,14 @@ expanded profile}
 \author{Jordi Ocana}
 
 \examples{
-# require("org.Hs.eg.db")
-# data(sampleProfiles)        # "singh01EntrezIDs", "singh05EntrezIDs", "welsh01EntrezIDs", "welsh05EntrezIDs"
-#
-#ewMF <- expandedSingh01$MF
-#cwMF <- contractedProfile(ewMF)
-#cwMF
-#class(cwMF)
-#ngenes(cwMF)
-#
-#codes <- c("GO:0030674", "GO:0008022", "GO:0032403", "GO:0030674.GO:0032403",
-#  "GO:0030674.GO:0008022.GO:0032403")
-#freqs <- c(10, 21, 34, 5, 3)
-#attr(freqs, "ngenes") <- sum(freqs)
-#cfreqs <- contractedProfile(freqs, nams = codes)
-#cfreqs
-#class(cfreqs)
-#ngenes(cfreqs)
+data(prostateIds)
+expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+reContractedWelsh <- contractedProfile(expandedWelsh[["MF"]])
+print(expandedWelsh)
+print(reContractedWelsh)
+class(reContractedWelsh)
+ngenes(reContractedWelsh)
 }
+
 

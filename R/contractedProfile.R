@@ -1,4 +1,4 @@
-contractedProfile <- function(prof, ...) {
+contractedProfile <- function(prof, nams = NULL) {
   UseMethod("contractedProfile")
 }
 
@@ -19,8 +19,8 @@ contractedProfile.ExpandedGOProfile <- function(prof, nams = NULL)  {
   return(result)
 }
 
-contractedProfile.default <- function(pGO, nams = NULL) {
-    pi. <- contractVector(pGO, nams)
+contractedProfile.default <- function(prof, nams = NULL) {
+    pi. <- contractVector(prof, nams)
     result <- cbind(character(length(pi.)), as.factor(names(pi.)), as.data.frame(pi.))
     colnames(result) <- c("Description", "GOID", "Frequency")
     attr(result, "numGenes") <- attr(pi., "ngenes")
@@ -29,21 +29,21 @@ contractedProfile.default <- function(pGO, nams = NULL) {
     return(result)
 }
 
-contractVector <- function(pGO, nams = NULL) {
+contractVector <- function(prof, nams = NULL) {
     if (is.null(nams))
-      nams <- names(pGO)
+      nams <- names(prof)
     else
-      if (length(nams) != length(pGO))
-        stop("'length(nams)' and 'length(pGO)' must be equal in method 'contractedProfile.default'")
+      if (length(nams) != length(prof))
+        stop("'length(nams)' and 'length(prof)' must be equal in method 'contractedProfile.default'")
     setNamesList <- strsplit(nams,"\\.")
     pi.labels <- unique(unlist(setNamesList))
     len.pi. <- length(pi.labels)
 #    present.in <- matrix(unlist(lapply(as.numeric(pi.labels), belongs.to, setNamesList)), nrow=len.pi., byrow=T)
     present.in <- matrix(unlist(lapply(pi.labels, belongs.to, setNamesList)), nrow=len.pi., byrow=T)
-    pi. <- sapply(1:len.pi., sum.if, present.in, pGO)
-    if (!all.wholenumber(pi.)) pi. <- pi. * attr(pGO,"ngenes")
+    pi. <- sapply(1:len.pi., sum.if, present.in, prof)
+    if (!all.wholenumber(pi.)) pi. <- pi. * attr(prof,"ngenes")
     names(pi.) <- pi.labels
-    attr(pi.,"ngenes") <- attr(pGO,"ngenes")
+    attr(pi.,"ngenes") <- attr(prof,"ngenes")
     return(pi.)
 }
 

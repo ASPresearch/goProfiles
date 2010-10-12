@@ -6,8 +6,10 @@ function (genelist, idType="Entrez", onto="ANY", level=2, orgPackage=NULL, anotP
 oneProfile<-function(GOTermsList, onto, level=2, multilevels=NULL, 
                      empty.cats = FALSE, cat.names = FALSE){
   funcProfile<-NULL
-  ancestors<-unlist(getAncestorsLst(GOTermsList,onto))
-  if (!is.null(ancestors)){
+  ancestorsList <-getAncestorsLst(GOTermsList,onto) 
+
+  if (!is.null(ancestorsList)){
+      ancestors<-unlist(ancestorsList)
       if (is.null(multilevels))
         ontoLevel<- getGOLevel (onto,level)
       else
@@ -16,15 +18,25 @@ oneProfile<-function(GOTermsList, onto, level=2, multilevels=NULL,
         on.exit(cat("No list of terms available for this ontology and level"))
       else
         funcProfile<-rawProfile(ancestors, ontoLevel, empty.cats)
-     if (cat.names){
+        # recall that empty.cats is not a valid parameter for rawProfile anymore
+      if (cat.names){
             funcProfile<-niceProfile(funcProfile)
             if (ord)
               funcProfile<-funcProfile[order(funcProfile$Description),]
             }
      }else 
             {on.exit(cat("No ancestors found for this GOTermsList"))}
+ 
   if (!is.null(funcProfile)){
-    attr(funcProfile,"numGenes")<-attr(GOTermsList,"numGenes")
+    if(!empty.cats){
+      if(cat.names)
+        funcProfile <-funcProfile[funcProfile$Frequency!=0,] # niceProfile yields a data.frame
+      else
+        funcProfile <-funcProfile[funcProfile!=0] # rawProfile yields a vector
+    }
+    attr(funcProfile,"numGenes")<-length(ancestorsList)
+                                        # use length(ancestorsList) instead of length(GOTermsList) to account for the cases where ancestors are missing in "onto"
+                                        # attr(GOTermsList,"numGenes")
     attr(funcProfile,"numNAs")<-attr(GOTermsList,"numNAs")
     attr(funcProfile,"ontology")<-onto}
   class(funcProfile) <-c("BasicGOProfile", class(funcProfile))

@@ -14,7 +14,7 @@ table2xs.BasicGOProfile <- function(pn, qm=NULL, pqn0=NULL, goIds=F)
   }
   else namsQm <- NULL
   if (!is.null(pqn0)) {
-      namsPQn0 <- names(pqn0)
+      namsPQn0 <- rownames(pqn0)
       n0 <- ngenes(pqn0)
       if (!is.null(qm)) {
         if (!all((namsPQn0 %in% namsQm)))

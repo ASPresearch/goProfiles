@@ -74,10 +74,10 @@ Journal of Statistical Planning and Inference, 2007.
 \author{Jordi Ocana}
 \seealso{compareGOProfiles}
 \examples{
-data(sampleProfiles)
-comparedMF <-fitGOProfile(pn=expandedWelsh01[['MF']], 
-                          p0  = expandedSingh01[['MF']])
-print(comparedMF)
-print(compSummary(comparedMF))
+#data(sampleProfiles)
+#comparedMF <-fitGOProfile(pn=expandedWelsh01[['MF']], 
+#                          p0  = expandedSingh01[['MF']])
+#print(comparedMF)
+#print(compSummary(comparedMF))
 }
 \keyword{htest}

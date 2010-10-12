@@ -155,7 +155,7 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
         else {
             # compare two intersecting profiles (some genes are specific of pn, some are specific of qm, and some common genes are profiled in pqn0)
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
-            stat <- chiIntersect(d2=d, pCommon=(n*pn+m*qm)/(n+m),
+            stat <- chiIntersect(d2=d, pCommon=(n*pn+m*qm-n0*pqn0)/(n+m-n0),
                 n=n, m=m, pq=pqn0, n0=n0,
                 nsims=nsims, ab.approx=ab.approx)
             #contrPn0 <- contractedProfile.default(pqn0)
@@ -184,12 +184,12 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
         }
         else {
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
-            pvalue <- pvalueIntersectLinCombChisq(d, pCommon=(n*pn+m*qm)/(n+m), n=n, m=m, pq=pqn0, n0=n0, nsims=nsims, attrs=T)
+            pvalue <- pvalueIntersectLinCombChisq(d, pCommon=(n*pn+m*qm-n0*pqn0)/(n+m-n0), n=n, m=m, pq=pqn0, n0=n0, nsims=nsims, attrs=T)
             #contrPn0 <- contractedProfile.default(pqn0)
             stat <- (n*m/(n+m)) * d
             names(stat) <- "(n*m/(n+m)) * d2"
         }
-        s <- sum((contrPn + contrQm) > 0) # classes being compared in the profiles
+        s <- sum((contrPn[,3] + contrQm[,3]) > 0) # classes being compared in the profiles
         betas <- attr(pvalue,"betas")
         parameters <- c(s, betas)
         names(parameters) <- c("number of classes", paste("coef",1:length(betas),sep=""))

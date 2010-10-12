@@ -97,11 +97,19 @@ contains its standard error estimate}
 
 \seealso{'compareGOProfiles'}
 \examples{
-data(sampleProfiles)
-comparedMF <-compareGOProfiles (pn=expandedWelsh01[['MF']], 
-                          qm  = expandedSingh01[['MF']], 
-                          pqn0= commonExpandedWelsh01Singh01[['MF']])
-equivMF<- equivalentGOProfiles(comparedMF)
+
+data(prostateIds)
+expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="MF",
+                        level=2, orgPackage="org.Hs.eg.db")
+commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
+commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+
+equivMF <-equivalentGOProfiles (expandedWelsh[['MF']], 
+                          qm  = expandedSingh[['MF']], 
+                          pqn0= commonExpanded[['MF']])
+
 print(equivSummary(equivMF, decs=5))
 }
 \keyword{htest}

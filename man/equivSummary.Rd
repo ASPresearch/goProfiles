@@ -21,13 +21,22 @@ The values contained are: \code{Sqr.Eucl.Dist}: The squared euclidean distance,
 \code{Equivalent?}Numerical value set to 1 if profiles can be considered equivalent and to zero if they cannot.
 }
 \author{Alex Sanchez}
+
+\seealso{'equivalentGOProfiles'}
+
 \examples{
-data(sampleProfiles)
-comparedMF <-compareGOProfiles (pn=expandedWelsh01[['MF']], 
-                          qm  = expandedSingh01[['MF']], 
-                          pqn0= commonExpandedWelsh01Singh01[['MF']])
-equivMF<- equivalentGOProfiles(comparedMF)
-print(equivSummary(equivMF, decs=5))
+# data(prostateIds)
+# expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
+#                        level=2, orgPackage="org.Hs.eg.db")
+# expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="MF",
+#                        level=2, orgPackage="org.Hs.eg.db")
+#commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
+#commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+
+# equivMF <-equivalentGOProfiles (pn=expandedWelsh, 
+#                          qm  = expandedSingh, 
+#                          pqn0= commonExpanded)
+#print(equivSummary(equivMF, decs=5))
 }
 \keyword{htest}
 

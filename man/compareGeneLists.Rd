@@ -38,6 +38,6 @@ data(prostateIds)
 prostateCompared<- compareGeneLists (welsh01EntrezIDs[1:500],
 singh01EntrezIDs[1:500], level=2, onto='MF', orgPackage="org.Hs.eg.db")
 print(prostateCompared)
-print(compSummary(prostateCompared))
+# print(compSummary(prostateCompared))
 }
 \keyword{htest}

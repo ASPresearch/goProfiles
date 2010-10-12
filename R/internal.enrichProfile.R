@@ -7,5 +7,7 @@ internal.enrichProfile <- function(prof, qrof, n, m, method, ...) {
     pvals[i] <- fisher.test(freqs_i)$p.value
   }
   names(pvals) <- names(prof)
-  p.adjust(pvals, method=method, ...)
+  adjPvals <- p.adjust(pvals, method=method, ...)
+  attr(adjPvals, "unadjusted") <- pvals
+  return(adjPvals)
 }

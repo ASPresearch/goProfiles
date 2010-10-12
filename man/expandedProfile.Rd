@@ -39,6 +39,6 @@ Volume 137, Issue 12, Pages 3975-3989, 2007.
 \seealso{basicProfile}
 \examples{
 data(CD4Ids)
-CD4.Expanded <-expandedProfile(genelist=CD4LLids, onto='MF', level=2, orgPackage="org.Hs.eg.db")
+CD4.Expanded <-expandedProfile(genelist=CD4LLids[1:50], onto='MF', level=2, orgPackage="org.Hs.eg.db")
 }
 \keyword{htest}

@@ -22,7 +22,11 @@ A list of profiles with more than one column each.
 }
 \author{Alex Sanchez}
 \examples{
-data(sampleProfiles)
-merged<-mergeProfilesLists (basicSingh01, basicWelsh01, profNames=c('Welsh','Singh'))
+require(goProfiles)
+data(prostateIds)
+welsh.MF <- basicProfile (welsh01EntrezIDs[1:100], onto="MF", level=2, orgPackage="org.Hs.eg.db") 
+singh.MF <- basicProfile (singh01EntrezIDs[1:100], onto="MF", level=2, orgPackage="org.Hs.eg.db") 
+plotProfiles(welsh.MF,'Functional profiles for Welsh dataset',percentage=TRUE)
+welsh.singh.MF <-mergeProfilesLists(welsh.MF, singh.MF, profNames=c("Welsh", "Singh"))
 }
 \keyword{utilities}
