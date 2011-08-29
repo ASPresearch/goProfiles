@@ -54,7 +54,7 @@
 \maketitle
 
 
-<<requiredFiles1, echo=F, results=H>>=
+<<requiredFiles1, echo=FALSE, results=hide>>=
 options(width=60, warn=0, digits=5)
 require(goProfiles)
 @
