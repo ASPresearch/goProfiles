@@ -1,5 +1,5 @@
 Package: goProfiles
-Version: 1.19.0
+Version: 1.20.0
 Title: goProfiles: an R package for the statistical analysis of functional profiles
 Author: Alex Sanchez, Jordi Ocana and Miquel Salicru
 Type: Package
