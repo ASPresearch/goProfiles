@@ -1,5 +1,6 @@
 `as.ExpandedGOProfile.default` <-
 function(x, expandedCatNames=NULL) {
+    x <- as.matrix(x)
     result <- as.data.frame(x)
     if (is.null(expandedCatNames))
         rowNames <- row.names(result)
