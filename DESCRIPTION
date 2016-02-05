@@ -5,9 +5,9 @@ Author: Alex Sanchez, Jordi Ocana and Miquel Salicru
 Type: Package
 Depends: Biobase, AnnotationDbi, GO.db
 Suggests: org.Hs.eg.db
-Date: 2010-10-04
+Date: 2016-02-05
 Maintainer: Alex Sanchez <asanchez@ub.edu>
 Description: The package implements methods to compare lists of genes based on comparing the corresponding 'functional profiles'.
 License: GPL-2
-biocViews: Microarray, GO
+biocViews: Annotation, GO, GeneExpression, GeneSetEnrichment, GraphAndNetwork, Microarray, MultipleComparison, Pathways, Software
 url: http://estbioinfo.stat.ub.es/pubs

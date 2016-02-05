@@ -161,7 +161,7 @@ This introduction has simply shown the possibilities of the program. A more comp
 
 
 \bibitem{Singh:2002}
-Singh Dinesh, , William~R Sellers, Philip~K. Febbo, Kenneth Ross, Donald~G
+Singh, Dinesh., William~R Sellers, Philip~K. Febbo, Kenneth Ross, Donald~G
   Jackson, Judith Manola, Christine Ladd, Pablo Tamayo, Andrew~A Renshaw,
   Anthony~V D'Amico, Jerome~P Richie, Eric~S Lander, Massimo Loda, Philip~W
   Kantoff, and Todd~R Golub.

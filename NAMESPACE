@@ -24,6 +24,10 @@ export(basicProfile,
        ngenes,
        fisherGOProfiles,
        contractedProfile)
+             
+import( AnnotationDbi,
+		Biobase,
+		GO.db)
 
 S3method(equivalentGOProfiles, GOProfileHtest)
 S3method(equivalentGOProfiles, list)
