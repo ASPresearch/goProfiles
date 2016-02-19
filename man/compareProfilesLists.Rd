@@ -29,7 +29,7 @@ Journal of Statistical Planning and Inference, 2007}
 \author{Alex Sanchez}
 \seealso{\code{\link{compareGeneLists}}, \code{\link{expandedProfile}} }
 \examples{
-#require(goProfiles)
+#[NOT RUN] 
 #data(ProstateIds)
 #expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
 #                        level=2, orgPackage="org.Hs.eg.db")

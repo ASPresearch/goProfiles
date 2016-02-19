@@ -11,8 +11,8 @@ Performs Gene Ontology based analysis for gene sets or other type of biological 
 \tabular{ll}{
 Package:\tab goProfiles \cr
 Type: \tab Package \cr
-Version: \tab 1.0 \cr
-Date: \tab 2007-06-12 \cr
+Version: \tab 1.33.2 \cr
+Date: \tab 2016-02-19 \cr
 License:\tab GPL \cr
 }
 }
