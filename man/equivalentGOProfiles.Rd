@@ -1,7 +1,6 @@
 \name{equivalentGOProfiles}
 \alias{equivalentGOProfiles}
 \alias{equivalentGOProfiles.GOProfileHtest}
-\alias{equivalentGOProfiles.list}
 \alias{equivalentGOProfiles.ExpandedGOProfile}
 \alias{equivalentGOProfiles.default}
 \title{Are two lists of genes equivalent in terms of their Gene Ontology profiles?}
@@ -15,7 +14,6 @@
 \usage{
 equivalentGOProfiles(goObject, \ldots)
 \method{equivalentGOProfiles}{GOProfileHtest}(goObject, equivEpsilon = 0.05, d0 = NULL, confidence = NULL, \ldots)
-\method{equivalentGOProfiles}{list}(goObject, \ldots)
 \method{equivalentGOProfiles}{ExpandedGOProfile}(goObject, qm=NULL, pqn0=NULL,
     n = ngenes(goObject), m = ngenes(qm), n0 = ngenes(pqn0),
     confidence = 0.95,
@@ -65,12 +63,6 @@ equivalentGOProfiles(goObject, \ldots)
   goObject, itself typically an object of class 'GOProfileHtest' resulting from a call to 'compareGOProfiles' with 
   simplify=T.
  
-  In the 'list' interface, the argument goObject is intended to be a list of objects of class 'GOProfileHtest'
-  typically resulting from a call to 'compareGOProfiles' with simplify=F. The call to the method is iterated
-  along the list, and the one-sided confidence interval for the squared Euclidean distance
-  is computed from the distance and its standard error stored in the corresponding fields of all the members 
-  of the list.
-  
   In the default interface, the 'goObject' argument is previously converted into an object of class 'ExpandedGOProfile'
   and then this interface is used.
  
@@ -80,8 +72,7 @@ equivalentGOProfiles(goObject, \ldots)
   
 }
 \value{
-In the 'ExpandedGOProfile' and 'list' interfaces, the result is a list of objects of class "htest"
-or a single "htest" object if there is only one object in the list and simplify == T.
+In the 'ExpandedGOProfile' interface, the result is an object of class "list" containg one or more "htest" objects, each of which may come from previous profiles comparisons.
 In the other interfaces, the result is a single "htest" object.
 Each one of these "htest" objects has the following fields:
 \item{statistic}{test statistic, (distance - d0) / se}
@@ -99,17 +90,28 @@ contains its standard error estimate}
 \examples{
 
 data(prostateIds)
-expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="MF",
-                        level=2, orgPackage="org.Hs.eg.db")
-expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="MF",
-                        level=2, orgPackage="org.Hs.eg.db")
+
+expandedWelsh <- expandedProfile(welsh01EntrezIDs[1:100], onto="ANY",
+                                 level=2, orgPackage="org.Hs.eg.db")
+expandedSingh <- expandedProfile(singh01EntrezIDs[1:100], onto="ANY",
+                                 level=2, orgPackage="org.Hs.eg.db")
 commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
-commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
+commonExpanded <- expandedProfile(commonGenes, onto="ANY", level=2, 
+                                  orgPackage="org.Hs.eg.db")
 
-equivMF <-equivalentGOProfiles (expandedWelsh[['MF']], 
-                          qm  = expandedSingh[['MF']], 
-                          pqn0= commonExpanded[['MF']])
+### FUnciona si fem: 
 
-print(equivSummary(equivMF, decs=5))
+equivMF <-equivalentGOProfiles (expandedWelsh[["MF"]], 
+                              qm  = expandedSingh[["MF"]], 
+                              pqn0= commonExpanded[["MF"]])
+
+equivsList <- lapply(1:length(expandedWelsh), 
+                     function (onto){
+                          equivalentGOProfiles (expandedWelsh[[onto]], 
+                                qm  = expandedSingh[[onto]], 
+                                pqn0= commonExpanded[[onto]])
+                     }
+)
+
 }
 \keyword{htest}

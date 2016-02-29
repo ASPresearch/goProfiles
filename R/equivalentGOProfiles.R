@@ -2,10 +2,6 @@ equivalentGOProfiles <- function(goObject, ...) {
   UseMethod("equivalentGOProfiles")
 }
 
-equivalentGOProfiles.list <- function(goObject, ...) {
-  sapply(goObject, equivalentGOProfiles, ...)
-}
-
 equivalentGOProfiles.GOProfileHtest <- function(goObject, equivEpsilon = 0.05, d0 = NULL, confidence = NULL, ...)
 {
   if (is.null(d0))
