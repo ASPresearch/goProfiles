@@ -1,10 +1,9 @@
 % \VignetteIndexEntry{goProfiles Vignette}
 % \VignetteDepends{Biobase,tools}
-% \VignetteKeywords{Gene Ontology Analysis, Microarrays}
+% \VignetteKeywords{Gene Ontology Analysis, Microarrays, Gene Set Analysis}
 % \VignettePackage{goProfiles}
 
 %\SweaveOpts{prefix.string=images/fig}
-
 
 \documentclass[a4paper]{article}
 
@@ -73,10 +72,12 @@ Bioconductor 2.2 or greater is also needed.
 
 \section{Quick start}
 
-For the inpatient user the following lines provide a quick and simple example on 
-the use of the package to explore and compare two experimental datasets obtained 
-from two prostate cancer experiments (\cite{Welsh:2001,Singh:2002}). Detailed explanations about the computations 
-can be found in the following chapters and in the package help.
+For the impatient user the following lines provide a quick and simple
+example on the use of the package to explore and compare two
+experimental datasets obtained from two prostate cancer experiments
+(\cite{Welsh:2001,Singh:2002}). Detailed explanations about the
+computations can be found in the following chapters and in the package
+help.
 
 The analysis proceeds as follows: 
 \begin{itemize}
@@ -121,14 +122,14 @@ are the two lists of genes not the profiles.
 compared.welsh.singh.01.MF <- compareGeneLists (welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100], onto="MF", level=2, orgPackage="org.Hs.eg.db")
 print(compSummary(compared.welsh.singh.01.MF))
 @
-%\item If one finds that the lists are globally different it may be interesting to check out to which categories may be this difference attributed. 
-%Recent versions of \emph{goProfiles} (from 1.11.02) allow to do a Fisher test on every category in the level of the profile.
-%<<fisherGOProf1>>=
-%list1 <- welsh01EntrezIDs[1:100]
-%list2 <- singh01EntrezIDs[1:100]
-%commProf <- basicProfile(intersect(list1, list2), onto="MF", level=2, orgPackage="org.Hs.eg.db")$MF
-%fisherGOProfiles(welsh.MF$MF, singh.MF$MF, commProf, method="holm")
-%@
+\item If one finds that the lists are globally different it may be interesting to check out to which categories may be this difference attributed. 
+Recent versions of \emph{goProfiles} (from 1.11.02) allow to do a Fisher test on every category in the level of the profile.
+<<fisherGOProf1>>=
+list1 <- welsh01EntrezIDs[1:100]
+list2 <- singh01EntrezIDs[1:100]
+commProf <- basicProfile(intersect(list1, list2), onto="MF", level=2, orgPackage="org.Hs.eg.db")$MF
+fisherGOProfiles(welsh.MF$MF, singh.MF$MF, commProf, method="holm")
+@
 \item The reason to compare two lists from similar studies may be to combine them. 
 In this case what is more meaningful to do is an equivalence test, instead of a difference test as above.
 <<compareEquiv1>>=
@@ -172,13 +173,12 @@ Singh, Dinesh., William~R Sellers, Philip~K. Febbo, Kenneth Ross, Donald~G
 A.~S{\'a}nchez-Pla, M.~Salicr{\'u}, and J.~Oca{\~n}a.
 \newblock Statistical methods for the analysis of high-throughput data based on
   functional profiles derived from the gene ontology.
-\newblock {\em Journal of Statistical Planning and Inference}, 137(12):3975--3989, 2007 
+\newblock {\em Journal of Statistical Planning and Inference}, 137(12):3975--3989, 2007. 
 
-\bibitem{ Salicru:2008}
+\bibitem{Salicru:2011}
   M. Salicr{\'u}, J. Oca{\~n}a and A. S{\'a}nchez-Pla.
 \newblock Comparison of Gene Lists based on Functional Profiles.
-\emph{submitted}, 2008.
-
+\newblock {\em BMC Bioinformatics}, DOI: 10.1186/1471-2105-12-401, 2011.
 
 \bibitem{Welsh:2001}
 J.B. Welsh, Lisa~M. Sapinoso, Andrew~I. Su, Suzanne~G. Kern, Jessica

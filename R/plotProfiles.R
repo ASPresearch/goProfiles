@@ -1,7 +1,8 @@
 `plotProfiles` <-
 function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage=FALSE,
-                    HORIZVERT=TRUE, legendText=NULL, colores=c("white", "red"),
-                    multiplePlots=F, multipleWindows =T, labelWidth=25,...){
+         HORIZVERT=TRUE, legendText=NULL, colores=c("white", "red"),
+         multiplePlots=F, multipleWindows =T, labelWidth=25,
+         marginPars=c(4,12,4,4), ...){
 ###
 ### Check if there is one or two columns in the profile
   if (is.data.frame(aProf)){
@@ -14,33 +15,38 @@ function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage=FALSE,
     plot1Prof ( aProf=aProf, aTitle=aTitle, anOnto=anOnto, 
                 percentage = percentage, HORIZVERT=HORIZVERT, 
                 legendText=legendText, colores=rainbow(numCats),
-                multiplePlots=multiplePlots, labelWidth=labelWidth,...)
+                multiplePlots=multiplePlots,
+                labelWidth=labelWidth, marginPars=marginPars, ...)
   }else{
       plot2Prof ( aProf=aProf, aTitle=aTitle, anOnto=anOnto, 
                 percentage = percentage, HORIZVERT=HORIZVERT, 
                 legendText=legendText, colores=colores,
-                multiplePlots=multiplePlots, labelWidth=labelWidth,...)}
+                multiplePlots=multiplePlots, labelWidth=labelWidth,
+                marginPars=marginPars,...)}
 }
 
 `plot1Prof` <-
 function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage= FALSE,
-                  HORIZVERT=TRUE, legendText, colores=rainbow(16),
-                  multiplePlots=F, multipleWindows =F, labelWidth=25,...) {
+         HORIZVERT=TRUE, legendText, colores=rainbow(16),
+         multiplePlots=F, multipleWindows =F,
+         labelWidth=25, marginPars=marginPars, ...) {
   if (is.data.frame(aProf)){
-    opt<-par (mar=c(4,12,4,4),las = 2, xpd=TRUE)
+    opt<-par (mar=marginPars, las = 2, xpd=TRUE)
     plotOne ( aProf=aProf, aTitle=aTitle, anOnto=anOnto, percentage=percentage,
-              HORIZVERT=TRUE, legendText=legendText, colores=colores, labelWidth=labelWidth,...)
+              HORIZVERT=TRUE, legendText=legendText, colores=colores,
+             labelWidth=labelWidth, marginPars=marginPars, ...)
     par(opt)
   }else{
       if (multiplePlots & (!multipleWindows))
-        opt<-par (mar=c(4,12,4,4), xpd=TRUE, mfrow=c(3,1))
+        opt<-par (mar=marginPars, xpd=TRUE, mfrow=c(3,1))
       else
-        opt<-par (mar=c(4,12,4,4), xpd=TRUE)
+        opt<-par (mar=marginPars, xpd=TRUE)
         for (i in 1:length(aProf)){
         if ((multipleWindows) & length(aProf)>1 & i >1 ) win.graph() 
         plotOne ( aProf[[i]], aTitle=aTitle, anOnto=names(aProf[i]),
                   percentage=percentage, HORIZVERT=TRUE, 
-                  legendText=legendText, colores=colores, labelWidth=labelWidth,...)}
+                  legendText=legendText, colores=colores,
+                  labelWidth=labelWidth,marginPars=marginPars, ...)}
     par(opt)  
    # mtext(aTitle,line=3,adj=0,cex=1.2)
   }    
@@ -48,7 +54,8 @@ function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage= FALSE,
 
 `plotOne` <-
 function (aProf, aTitle="Functional Profiles", anOnto=NULL, percentage=FALSE,
-                    HORIZVERT=TRUE, legendText, colores,  labelWidth=25,...){
+          HORIZVERT=TRUE, legendText, colores, labelWidth=25,
+          marginPars=marginPars, ...){
     freq <-aProf$Frequency
     desc <-as.character(aProf$Description)
     if (percentage){
@@ -71,19 +78,21 @@ function (aProf, aTitle="Functional Profiles", anOnto=NULL, percentage=FALSE,
 
 `plot2Prof` <-
 function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage=FALSE,
-                    HORIZVERT=TRUE, legendText=NULL, colores=c("white", "red"),
-                    multiplePlots=F, multipleWindows =F, labelWidth=25,...){
+         HORIZVERT=TRUE, legendText=NULL, colores=c("white", "red"),
+         multiplePlots=F, multipleWindows =F,
+         labelWidth=25, marginPars=marginPars, ...){
   if (is.data.frame(aProf)){
-    opt<-par (mar=c(4,12,4,4), xpd=TRUE,cex.axis=0.01)
-    plotTwo ( aProf=aProf, aTitle=aTitle, anOnto=anOnto, 
-              percentage = percentage, HORIZVERT=HORIZVERT, 
-              legendText=legendText, colores=colores, labelWidth=labelWidth, ...)
+    opt<-par (mar=marginPars, xpd=TRUE,cex.axis=0.01)
+    plotTwo (aProf=aProf, aTitle=aTitle, anOnto=anOnto, 
+             percentage = percentage, HORIZVERT=HORIZVERT, 
+             legendText=legendText, colores=colores,
+             labelWidth=labelWidth, marginPars=marginPars, ...)
     par(opt)
   }else{
     if (multiplePlots& (!multipleWindows))
-      opt<-par (mar=c(4,12,4,4), xpd=TRUE, mfrow=c(3,1))
+      opt<-par (mar=marginPars, xpd=TRUE, mfrow=c(3,1))
     else
-      opt<-par (mar=c(4,12,4,4), xpd=TRUE)
+      opt<-par (mar=marginPars, xpd=TRUE)
     for (i in 1:length(aProf)){
       if ((multipleWindows) & length(aProf)>1 & i >1 ) win.graph()
       plotTwo (aProf[[i]], aTitle=aTitle, anOnto=names(aProf[i]),
@@ -96,10 +105,11 @@ function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage=FALSE,
 
 `plotTwo` <-
 function(aProf, aTitle="Functional Profiles", anOnto=NULL, percentage=FALSE,
-                    HORIZVERT=TRUE, legendText, colores, labelWidth=25,...){
+         HORIZVERT=TRUE, legendText, colores,
+         labelWidth=25, marginPars=marginPars, ...){
     freq <-t(as.matrix(aProf[,3:4]))
     desc <-as.character(aProf$Description)
-    opt<-par (mar=c(4,12,4,4), xpd=TRUE,cex.axis=0.01) 
+    opt<-par (mar=marginPars, xpd=TRUE,cex.axis=0.01) 
     if (percentage){
         numGenes1<-attr(aProf,"numGenes1")
         numGenes2<-attr(aProf,"numGenes2")
