@@ -8,8 +8,7 @@ The labels of the Y-axis of the plots are the descriptions of the GO Terms. If t
 it is truncated and ended by three dots.}
 \usage{
 plotProfiles(aProf, aTitle = "Functional Profile", anOnto = NULL, percentage = FALSE, 
-HORIZVERT = TRUE, legendText = NULL, colores = c("white", "red"), multiplePlots = F, multipleWindows = T, 
-labelWidth=25, marginPars=c(4,12,4,4), ...)
+HORIZVERT = TRUE, legendText = NULL, colores = c("white", "red"), multiplePlots = F, multipleWindows = T, labelWidth=25,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +22,6 @@ labelWidth=25, marginPars=c(4,12,4,4), ...)
   \item{multiplePlots}{Plot all profiles for a given dataset in one figure}
   \item{multipleWindows}{Open a new window after each plot}
   \item{labelWidth}{Width of Y axis labels (Names of GO categories) in the plot}
-  \item{marginPars}{Margin values for plotting profiles. Modify second value if more space for labels is needed}
   \item{...}{Other graphical parameters that should be passed for plotting}
 }
 \value{
