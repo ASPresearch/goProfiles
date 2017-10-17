@@ -15,7 +15,7 @@
 \headheight=-.3in
 
 
-%\usepackage{Sweave}
+\usepackage{Sweave}
 \usepackage{a4wide}
 \usepackage{hyperref}
 \usepackage{framed}
@@ -96,7 +96,7 @@ printProfiles(welsh.singh.MF, percentage=TRUE)
 @
 \begin{figure}[htbp]
 \begin{center}
-<<plotProfileMF>>=
+<<plotProfileMF, fig=T>>=
 plotProfiles (welsh.MF, aTitle="Welsh (2001). Prostate cancer data")
 @
 \end{center}
@@ -109,7 +109,7 @@ welsh <- basicProfile (welsh01EntrezIDs[1:100], onto="ANY", level=2, orgPackage=
 \item A visual comparison of profiles can be useful to give hints about the difference between them.
 \begin{figure}[htbp]
 \begin{center}
-<<comparevisual>>=
+<<comparevisual, fig=T>>=
 plotProfiles (welsh.singh.MF, percentage=T,aTitle="Welsh vs Singh", legend=T) 
 @
 \caption{\label{welsh.singh.MF} Comparison between two profiles at the second level of the MF ontology}
