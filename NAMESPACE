@@ -1,0 +1,48 @@
+export(basicProfile,
+       expandedProfile,
+       GOTermsList,
+       getAncestorsLst,
+       getGOLevel,
+       compSummary,
+       equivSummary,
+       fitGOProfile,
+       compareGOProfiles,
+       compareProfilesLists,
+       compareGeneLists,
+       plotProfiles,
+       printProfiles,
+       mergeProfilesLists,
+       as.GOTerms.frame,
+       as.GOTerms.list,
+       BioCpack2EntrezIDS,
+       BioCpack2Profiles,
+       BioCprobes2Entrez,
+       GOTermsFrame2GOTermsList,
+       expandTerm,
+       expandedLevel,
+       equivalentGOProfiles,
+       ngenes,
+       fisherGOProfiles,
+       contractedProfile)
+             
+import( AnnotationDbi,
+		Biobase,
+		GO.db)
+importFrom("grDevices", "rainbow") 
+importFrom("graphics", "axis", "barplot", "par", "text", "title") 
+importFrom("stats", "fisher.test", "p.adjust", "pchisq", "pnorm", "qnorm", "quantile", "rbinom", "rchisq", "sd", "var")
+
+S3method(equivalentGOProfiles, GOProfileHtest)
+S3method(equivalentGOProfiles, ExpandedGOProfile)
+
+S3method(ngenes, numeric)
+S3method(ngenes, matrix)
+S3method(ngenes, BasicGOProfile)
+S3method(ngenes, ExpandedGOProfile)
+
+S3method(fisherGOProfiles, numeric)
+S3method(fisherGOProfiles, matrix)
+S3method(fisherGOProfiles, BasicGOProfile)
+S3method(fisherGOProfiles, ExpandedGOProfile)
+
+S3method(contractedProfile, ExpandedGOProfile)

@@ -1,0 +1,13 @@
+Package: goProfiles
+Version: 1.39.1
+Title: goProfiles: an R package for the statistical analysis of functional profiles
+Author: Alex Sanchez, Jordi Ocana and Miquel Salicru
+Type: Package
+Depends: Biobase, AnnotationDbi, GO.db
+Suggests: org.Hs.eg.db
+Date: 2017-07-13
+Maintainer: Alex Sanchez <asanchez@ub.edu>
+Description: The package implements methods to compare lists of genes based on comparing the corresponding 'functional profiles'.
+License: GPL-2
+biocViews: Annotation, GO, GeneExpression, GeneSetEnrichment, GraphAndNetwork, Microarray, MultipleComparison, Pathways, Software
+url: http://eib.stat.ub.edu/goProfiles
