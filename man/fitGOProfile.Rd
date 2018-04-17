@@ -7,7 +7,8 @@ These procedures are based on asymptotic properties of the squared euclidean dis
 between the contracted versions of pn and p0
 }
 \usage{
-fitGOProfile(pn, p0, n = ngenes(pn), method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95, nsims = 10000, simplify = T)
+fitGOProfile(pn, p0, n = ngenes(pn), method = "lcombChisq", 
+ab.approx = "asymptotic", confidence = 0.95, simplify = T)
 }
 \arguments{
   \item{pn}{an object of class ExpandedGOProfile representing one or more "sample" expanded GO profiles for a fixed ontology (see the 'Details' section)}
@@ -16,8 +17,6 @@ fitGOProfile(pn, p0, n = ngenes(pn), method = "lcombChisq", ab.approx = "asympto
   \item{method}{the approximation method to the sampling distribution under the null hypothesis "p = p0", where p is the 'true' population profile originating each column of pn. See the 'Details' section below }
   \item{ab.approx}{the method used to compute the constants 'a' and 'b' described in the paper. See the 'Details' section}
   \item{confidence}{the confidence level of the confidence interval in the result}
-  \item{nsims}{some inferential methods require a simulation step; the number
-  	       of simulation replicates is specified with this parameter}
   \item{simplify}{ should the result be simplified, if possible? See the 'Details' section}
 }
 \details{An object of class 'ExpandedGOProfile' is, essentially, a 'data.frame' object

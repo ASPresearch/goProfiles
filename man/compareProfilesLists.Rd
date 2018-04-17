@@ -37,7 +37,8 @@ Journal of Statistical Planning and Inference, 2007}
 #                        level=2, orgPackage="org.Hs.eg.db")
 #commonGenes <- intersect(welsh01EntrezIDs[1:100], singh01EntrezIDs[1:100])
 #commonExpanded <- expandedProfile(commonGenes, onto="MF", level=2, orgPackage="org.Hs.eg.db")
-#comparedMF<- compareProfilesLists (expandedWelsh, expandedSingh, commonExpanded, relationType="COMMON")
+#comparedMF<- compareProfilesLists (expandedWelsh, expandedSingh, commonExpanded, 
+#                                   relationType="COMMON")
 #print(comparedMF)
 #print(compSummary(comparedMF))
 }

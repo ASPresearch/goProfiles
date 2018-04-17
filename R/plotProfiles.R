@@ -37,7 +37,7 @@ function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage= FALSE,
       else
         opt<-par (mar=c(4,12,4,4), xpd=TRUE)
         for (i in 1:length(aProf)){
-        if ((multipleWindows) & length(aProf)>1 & i >1 ) win.graph() 
+        if ((multipleWindows) & length(aProf)>1 & i >1 ) dev.new() 
         plotOne ( aProf[[i]], aTitle=aTitle, anOnto=names(aProf[i]),
                   percentage=percentage, HORIZVERT=TRUE, 
                   legendText=legendText, colores=colores, labelWidth=labelWidth,...)}
@@ -85,7 +85,7 @@ function(aProf, aTitle="Functional Profile", anOnto=NULL, percentage=FALSE,
     else
       opt<-par (mar=c(4,12,4,4), xpd=TRUE)
     for (i in 1:length(aProf)){
-      if ((multipleWindows) & length(aProf)>1 & i >1 ) win.graph()
+      if ((multipleWindows) & length(aProf)>1 & i >1 ) dev.new()
       plotTwo (aProf[[i]], aTitle=aTitle, anOnto=names(aProf[i]),
             percentage=percentage, HORIZVERT=HORIZVERT, 
             legendText=legendText, colores=colores,labelWidth=labelWidth,...)}

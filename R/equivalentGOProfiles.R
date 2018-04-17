@@ -12,7 +12,7 @@ equivalentGOProfiles.GOProfileHtest <- function(goObject, equivEpsilon = 0.05, d
   se <- attr(goObject$estimate,"se")
   icDistance.oneSided <- c(0, d.upper <- d + qnorm(confidence) * se)
   names(icDistance.oneSided) <- c("origin", "one-sided upper")
-  
+
   n <- ngenes(goObject$profilePn)
   m <- ngenes(goObject$profileQm)
   stat <- (goObject$estimate - d0) / se
@@ -30,12 +30,11 @@ equivalentGOProfiles.GOProfileHtest <- function(goObject, equivEpsilon = 0.05, d
     estimate = d,
     data.name = deparse(substitute(goObject)),
     alternative = paste("Equivalence or similarity, true squared Euclidean distance between the contracted profiles is less than ",
-                        d0, sep="")
+      d0, sep="")
   )
   class(result) <- "htest"
   return(result)
 }
-
 
 equivalentGOProfiles.ExpandedGOProfile <- function(goObject, qm=NULL, pqn0=NULL,
     n = ngenes(goObject), m = ngenes(qm), n0 = ngenes(pqn0),

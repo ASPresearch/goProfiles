@@ -9,8 +9,9 @@ asymptotic properties of the squared euclidean distance between
 the contracted versions of pn and qm
 }
 \usage{                                
-compareGOProfiles(pn, qm = NULL, pqn0 = NULL, n = ngenes(pn), m = ngenes(qm), n0 = ngenes(pqn0), method = "lcombChisq", 
-ab.approx = "asymptotic", confidence = 0.95, nsims = 10000, simplify = T, ...)
+compareGOProfiles(pn, qm = NULL, pqn0 = NULL, n = ngenes(pn), m = ngenes(qm), 
+n0 = ngenes(pqn0), method = "lcombChisq", ab.approx = "asymptotic", 
+confidence = 0.95, simplify = T, ...)
 }
 \arguments{
 \item{pn}{an object of class ExpandedGOProfile representing one or more
@@ -26,7 +27,6 @@ This parameter is included to allow the possibility of exploring the consequence
 \item{method}{the approximation method to the sampling distribution under the null hypothesis specifying that the samples pn and qm come from the same population. See the 'Details' section below}
 \item{confidence}{the confidence level of the confidence interval in the result}
 \item{ab.approx}{the approximation used for computing 'a' and 'b' coefficients (see details)}
-\item{nsims}{some inferential methods require a simulation step; the number of simulation replicates is specified with this parameter}
 \item{simplify}{should the result be simplified, if possible? See the 'Details' section}
 \item{...}{Other arguments needed}
 }

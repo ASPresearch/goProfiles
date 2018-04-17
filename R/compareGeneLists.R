@@ -18,7 +18,8 @@ function (genelist1, genelist2, idType="Entrez", onto="ANY", level=2, orgPackage
 
   ### Step 2: Determine how is the relation  between genelist1 and genelist2
   commonGenes <-intersect(genelist1, genelist2)
-  if (length(commonGenes)==0){
+  if ((length(commonGenes)==0) || 
+      ((length(commonGenes)>0) && (is.null(unlist(GOTermsList(commonGenes, orgPkg = "org.Hs.eg.db", onto=onto)))) ) ){
     relationType <-"DISJOINT"
   }else{
     if (length(commonGenes)==min(length(genelist1), length(genelist2))){

@@ -1,2 +1,2 @@
 # goProfiles
-an R/Bioconductor package for the Statistical Analysis of Functional Profiles
+an R/Bioconductor package for the Statistical Analysis of Functional Profiles.

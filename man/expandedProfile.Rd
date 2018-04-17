@@ -4,8 +4,9 @@
 \description{
 Expanded profiles are used mainly for comparison of profiles based on the theory developed by Sanchez et al (2007) (see references)}
 \usage{
-expandedProfile(genelist, idType = "Entrez", onto = "ANY", level = 2,orgPackage=NULL, anotPackage=NULL, 
-	multilevels = NULL, ord = TRUE, na.rm = TRUE, percentage = TRUE)
+expandedProfile(genelist, idType = "Entrez", onto = "ANY", level = 2,
+orgPackage=NULL, anotPackage=NULL, 	multilevels = NULL, ord = TRUE, 
+na.rm = TRUE, percentage = TRUE)
 }
 \arguments{
   \item{genelist}{List of genes on which the Profile has to be based}
@@ -39,6 +40,7 @@ Volume 137, Issue 12, Pages 3975-3989, 2007.
 \seealso{basicProfile}
 \examples{
 data(CD4Ids)
-CD4.Expanded <-expandedProfile(genelist=CD4LLids[1:50], onto='MF', level=2, orgPackage="org.Hs.eg.db")
+CD4.Expanded <-expandedProfile(genelist=CD4LLids[1:50], onto='MF', 
+level=2, orgPackage="org.Hs.eg.db")
 }
 \keyword{htest}

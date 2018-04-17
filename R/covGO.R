@@ -19,7 +19,7 @@ function(pn, simplify=T) {
 #           length is one and simplifiy==T, the results consists in a single
 #           matrix object, not a list of matrix objects.
 #
-# References: citar papers en construcció
+# References: citar papers en construcci
 #
 # See Also:
 #

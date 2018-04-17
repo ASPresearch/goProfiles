@@ -13,7 +13,8 @@ package.
 }
 \usage{
 as.GOTerms.frame(myGOTermsList, na.rm=TRUE)
-as.GOTerms.list(genelist, probeType, orgPackage=NULL, anotPkg=NULL, onto="any", na.rm=TRUE)
+as.GOTerms.list(genelist, probeType, orgPackage=NULL, anotPkg=NULL, 
+onto="any", na.rm=TRUE)
 BioCpack2EntrezIDS(anotPkg, na.rm=TRUE)
 BioCpack2Profiles(anotPkg, orgPackage, level=2, na.rm=TRUE, expanded=FALSE)
 BioCprobes2Entrez(probeslist , anotPkg, na.rm=TRUE)

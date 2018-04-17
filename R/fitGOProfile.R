@@ -1,7 +1,6 @@
 `fitGOProfile` <-
 function(pn, p0, n = ngenes(pn),
-    method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95, nsims = 10000, 
-    simplify=T)
+    method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95, simplify=T)
 {
 #
 # Does a "sample" GO profile 'pn', observed in a sample of 'n' genes, fit a
@@ -14,8 +13,7 @@ function(pn, p0, n = ngenes(pn),
 #
 # Usage:
 #   fitGOProfile(pn, p0, n = ngenes(pn),
-#       method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95,
-#       nsims = 10000, simplify=T)
+#       method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95, simplify=T)
 #
 # Arguments:
 # pn:           an object of class ExpandedGOProfile representing one or more
@@ -28,8 +26,6 @@ function(pn, p0, n = ngenes(pn),
 # method:       the approximation method to the sampling distribution under the null hypothesis "p = p0", where p is the
 #               "true" population profile originating each column of pn. See the 'Details' section below
 # confidence:   the confidence level of the confidence interval in the result
-# nsims:        some inferential methods require a simulation step; the number
-#               of simulation replicates is specified with this parameter
 # simplify:     should the result be simplified, if possible? See the 'Details' section
 #
 # Details:
@@ -83,7 +79,7 @@ function(pn, p0, n = ngenes(pn),
 # alternative:          a character string describing the alternative hypothesis (always
 #                       "true squared Euclidean distance between the contracted profiles is greater than zero").
 #
-# References: citar papers en construcció
+# References: citar papers en construccio
 #
 # See Also:     compareGOProfiles, simPnP0, simSeriesPnP0
 #
@@ -136,7 +132,7 @@ function(pn, p0, n = ngenes(pn),
     vecP0 <- p0[,k]
     names(vecP0) <- rownames(p0)
     result.jk <- internal.fitGOProf(vecPn, vecP0, n[j], method, ab.approx,
-      confidence, nsims)
+      confidence)
     result.jk$data.name <- paste(pnName,"[",j,"] and ",p0Name,"[",k,"]", sep="")
     result.jk
   }

@@ -7,8 +7,8 @@ the methodology developed by Sanchez, Salicru and Ocan\~a (2007)
 }
 \usage{
 compareGeneLists(genelist1, genelist2, idType = "Entrez", onto = "ANY",
-level = 2, orgPackage, 
-method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95, compareFunction="compareGOProfiles", ...)
+level = 2, orgPackage, method = "lcombChisq", ab.approx = "asymptotic", 
+confidence = 0.95, compareFunction="compareGOProfiles", ...)
 }
 \arguments{
   \item{genelist1}{First gene set to be compared}

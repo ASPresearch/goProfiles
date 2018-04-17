@@ -5,7 +5,7 @@ function(pn, p0 = NULL, funcProfP0 = NULL, simplify=T) {
   vecFuncProfP0 <- NULL
   if (!is.null(funcProfP0)) {
     p0Name <- deparse(substitute(funcProfP0))
-    # ATENCIÓ!!!! FALTA MANEGAR funcProfP0 COM OBJECTE DE CLASSE FunctionalGOProfile:
+    # ATENCIO!!!! FALTA MANEGAR funcProfP0 COM OBJECTE DE CLASSE FunctionalGOProfile:
     # funcProfP0 <- as.FunctionalGOProfile(funcProfP0)
     givenFuncProfP0 <- T
   }

@@ -1,8 +1,8 @@
 
 compareGOProfiles <- function(pn, qm=NULL, pqn0=NULL, n = ngenes(pn), m = ngenes(qm), n0 = ngenes(pqn0),
     method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95,
-#    d0 = NULL, equivEpsilon = 0.05,   # <----------------------- suprimir de l'ajuda
-    nsims = 10000,
+    # d0 = NULL, equivEpsilon = 0.05,   # <----------------------- suprimir de l'ajuda
+    # nsims = 10000,    # <----------------------- suprimir de l'ajuda
     simplify=T, ...){
 #
 # Compare two samples of genes in terms of their GO profiles pn and qm. Both
@@ -108,7 +108,7 @@ compareGOProfiles <- function(pn, qm=NULL, pqn0=NULL, n = ngenes(pn), m = ngenes
 #                       is declared if d.sup < d0
 # d0:                   the equivalence threshold for the squared Euclidean distance
 #
-# References: citar papers en construcció
+# References: citar papers en construccio
 #
 # See Also:     fitGOProfile, equivalentGOProfiles
 #
@@ -149,7 +149,7 @@ compareGOProfiles <- function(pn, qm=NULL, pqn0=NULL, n = ngenes(pn), m = ngenes
       pqn0Name.l <- paste(pqn0Name,"[",l,"]", sep="")
     }
     result.jkl <- internal.compareGOProf(vecPn, vecQm, vecPQn0, n[j], m[k], n0[l],
-        method, ab.approx, confidence, nsims)
+        method, ab.approx, confidence)
     result.jkl$data.name <-
         paste(pnName,"[",j,"] and ", qmName.k, " and ", pqn0Name.l, sep="")
     result.jkl

@@ -152,7 +152,7 @@ print(equivSummary(equivMF, decs=5))
 
 \section{User guide}
 
-This introduction has simply shown the possibilities of the program. A more complete user guide can be found at the program's web site:\newline \href{http://estbioinfo.stat.ub.es/pubs/goProfiles-Usersguide.pdf}{http://estbioinfo.stat.ub.es/pubs/goProfiles-Usersguide.pdf}
+This introduction has simply shown the possibilities of the program. A more complete user guide can be found at the program's wiki in github:\newline \href{https://github.com/alexsanchezpla/goProfiles/wiki}{https://github.com/alexsanchezpla/goProfiles/wiki}
 
 \bibliographystyle{plain}
 

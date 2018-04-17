@@ -1,12 +1,12 @@
 `expandedProfile` <-
 function(genelist, idType="Entrez", onto="ANY", level=2,orgPackage=NULL, anotPackage=NULL,    
   multilevels=NULL, ord=TRUE, na.rm=TRUE, percentage=TRUE){
-
-
 oneProfile<-function(GOTermsList, onto="ANY", level=2, multilevels=NULL,
                     ord=TRUE, na.rm=TRUE, percentage=TRUE){   
+    expProf<-NULL
     ancestorsList<-getAncestorsLst(GOTermsList,onto)
     if (!is.null(ancestorsList)){
+      ancestors<-unlist(ancestorsList)
       if (is.null(multilevels))
         ontoLevel<- getGOLevel (onto,level)
       else
@@ -15,12 +15,12 @@ oneProfile<-function(GOTermsList, onto="ANY", level=2, multilevels=NULL,
      {errorMsg<-paste("No list of terms available for ",
      "Ontology: ",onto," and level: ",level,sep="")
      on.exit(cat(errorMsg))
-        expProf<-NULL}
+        }
     else{
-        numGenes <- length(ancestorsList) 
+        numCols <- length(ancestorsList) 
         numProfiles <- 0
         # exp.profile <- data.frame(frec=rep (0,length(ontoLevel)))
-        exp.profile <- matrix(nrow=length(ontoLevel),ncol=numGenes)
+        exp.profile <- matrix(nrow=length(ontoLevel),ncol=numCols)
         nams<-character(0)
         for (i in 1:length(ancestorsList))
         {   my.profile<-rawProfile(ancestorsList[[i]],ontoLevel, TRUE)
@@ -52,8 +52,8 @@ oneProfile<-function(GOTermsList, onto="ANY", level=2, multilevels=NULL,
           expProf<- as.ExpandedGOProfile(expProf)
       else
           expProf<- as.data.frame(expProf)
-      attr(expProf,"numGenes")<-  numGenes # = length(ancestorsList) 
-                                        # use length(ancestorsList) instead of length(GOTermsList)
+      attr(expProf,"numGenes")<- attr(GOTermsList,"numGenes")
+                                        # have been erroneously using length(ancestorsList) instead of length(GOTermsList)
                                         # to account for the cases where ancestors are missing in "onto"
                                         # length(GOTermsList)
       attr(expProf,"ontology")<-onto}

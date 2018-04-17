@@ -25,7 +25,7 @@ function(pn, p0 = NULL, funcProfP0 = NULL, simplify=T) {
 #           max(ncol(pn),ncol(p0),ncol(funcProfP0)). When simplifiy==T, the
 #           result is a vector, otherwise it is a list.
 #
-# References: citar papers en construcció
+# References: citar papers en construccio
 #
 # See Also:
 #

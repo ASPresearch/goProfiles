@@ -4,8 +4,9 @@
 \description{
 Compute basic functional profile for a given list of genes/GO identifiers, a given ontology at a given level of the GO}
 \usage{
-basicProfile(genelist, idType = "Entrez", onto = "ANY", level = 2,orgPackage=NULL, anotPackage=NULL, 
-	ord = TRUE, multilevels = NULL, empty.cats = TRUE, cat.names = TRUE, na.rm = TRUE)
+basicProfile(genelist, idType = "Entrez", onto = "ANY", level = 2, orgPackage=NULL, 
+anotPackage=NULL, 	ord = TRUE, multilevels = NULL, 
+empty.cats = TRUE, cat.names = TRUE, na.rm = TRUE)
 }
 \arguments{
   \item{genelist}{List of genes on which the Profile has to be based}

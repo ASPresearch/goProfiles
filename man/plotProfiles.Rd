@@ -8,7 +8,8 @@ The labels of the Y-axis of the plots are the descriptions of the GO Terms. If t
 it is truncated and ended by three dots.}
 \usage{
 plotProfiles(aProf, aTitle = "Functional Profile", anOnto = NULL, percentage = FALSE, 
-HORIZVERT = TRUE, legendText = NULL, colores = c("white", "red"), multiplePlots = F, multipleWindows = T, labelWidth=25,...)
+HORIZVERT = TRUE, legendText = NULL, colores = c("white", "red"), multiplePlots = F, 
+multipleWindows = T, labelWidth=25,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -12,14 +12,15 @@ internal.equivalentGOProf <- function(pn, qm, pqn0, n, m, n0, confidence, d0, eq
       # equivalence of a profile with a subset of it
       d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(pqn0))
       m <- n0
-    }
-    else if (is.null(pqn0)) {
-      # equivalence of two disjoint profiles (no gens in common)
-      d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
-    }
-    else {
-      # equivalence of two intersecting profiles (some genes are specific of pn, some are specific of qm, and some common genes are profiled in pqn0)
-      d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
+    } else {
+      if (is.null(pqn0)) {
+        # equivalence of two disjoint profiles (no gens in common)
+        d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
+      }
+      else {
+        # equivalence of two intersecting profiles (some genes are specific of pn, some are specific of qm, and some common genes are profiled in pqn0)
+        d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
+      }
     }
     s <- sum((contrPn[,3] + contrQm[,3]) > 0) # classes being compared in the profiles
     if (is.null(d0))
@@ -46,7 +47,9 @@ internal.equivalentGOProf <- function(pn, qm, pqn0, n, m, n0, confidence, d0, eq
       estimate = d,
       data.name = dataNames,
       alternative = paste("Equivalence or similarity, true squared Euclidean distance between the contracted profiles is less than ",
-      d0, sep="")
+      d0, sep=""),
+      profilePn = contrPn,
+      profileQm = contrQm
   )
   class(result) <- "htest"
   return(result)

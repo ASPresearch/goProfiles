@@ -119,12 +119,12 @@ Statistical Planning and Inference, 2007.}
 
 \examples{
 require("org.Hs.eg.db")
-data(prostateIds)        # "singh01EntrezIDs", "singh05EntrezIDs", "welsh01EntrezIDs", "welsh05EntrezIDs"
+data(prostateIds)        
 # To improve speed, use only the first 100 genes:
 list1 <- welsh01EntrezIDs[1:100]
 list2 <- singh01EntrezIDs[1:100]
 prof1 <- basicProfile(list1, onto="MF", level=2, orgPackage="org.Hs.eg.db")$MF
 prof2 <- basicProfile(list2, onto="MF", level=2, orgPackage="org.Hs.eg.db")$MF
-commProf <- basicProfile(intersect(list1, list2), onto="MF", level=2, orgPackage="org.Hs.eg.db")$MF
+commProf<-basicProfile(intersect(list1, list2), onto="MF",level=2, orgPackage="org.Hs.eg.db")$MF
 fisherGOProfiles(prof1, prof2, commProf, method="holm")
 }

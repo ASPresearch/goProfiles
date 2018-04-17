@@ -23,14 +23,21 @@ export(basicProfile,
        equivalentGOProfiles,
        ngenes,
        fisherGOProfiles,
-       contractedProfile)
+       contractedProfile,
+       equivClust,
+       iterEquivClust,
+       equivClust2pdf
+       )
              
 import( AnnotationDbi,
 		Biobase,
 		GO.db)
-importFrom("grDevices", "rainbow") 
-importFrom("graphics", "axis", "barplot", "par", "text", "title") 
-importFrom("stats", "fisher.test", "p.adjust", "pchisq", "pnorm", "qnorm", "quantile", "rbinom", "rchisq", "sd", "var")
+importFrom("grDevices", "dev.list", "dev.off", "dev.set", "pdf", "rainbow", "dev.new") 
+importFrom("graphics", "plot", "axis", "barplot", "par", "text", "title") 
+importFrom("stats", "fisher.test", "p.adjust", "pchisq", "pnorm", "qnorm", "quantile", "rbinom", "rchisq", "sd", "var", "as.dist", "hclust")
+
+importFrom("CompQuadForm", "davies")
+importFrom("stringr","str_pad", "str_length")
 
 S3method(equivalentGOProfiles, GOProfileHtest)
 S3method(equivalentGOProfiles, ExpandedGOProfile)
@@ -46,3 +53,6 @@ S3method(fisherGOProfiles, BasicGOProfile)
 S3method(fisherGOProfiles, ExpandedGOProfile)
 
 S3method(contractedProfile, ExpandedGOProfile)
+
+S3method(equivClust2pdf,equivClust)
+S3method(equivClust2pdf,iterEquivClust)

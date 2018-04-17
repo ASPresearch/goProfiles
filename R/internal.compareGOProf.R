@@ -1,7 +1,6 @@
 
 internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
-  method, ab.approx, confidence,
-  nsims)
+  method, ab.approx, confidence)
 {
 # Compare two "sample" GO profiles pn and qm. Are they just random samples taken
 # from the same "population" GO profile?
@@ -13,8 +12,7 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
 #
 # Usage:
 #   internal.compareGOProf(pn, qm=NULL, pqn0=NULL, n = attr(pn,"ngenes"), m = attr(qm,"ngenes"), n0 = attr(pqn0,"ngenes"),
-#       method = "lcombChisq", confidence = 0.95,
-#       nsims = 10000)
+#       method = "lcombChisq", confidence = 0.95)
 #
 #
 # Arguments:
@@ -33,8 +31,6 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
 # method:       the approximation method to the sampling distribution under the null hypothesis specifying that
 #               the samples pn and qm come from the same population. See the 'Details' section below
 # confidence:   the confidence level of the confidence interval in the result
-# nsims         some inferential methods require a simulation step; the number of simulation replicates is specified with
-#               this parameter
 #
 # Details:
 # The parameters n, m and n0 are included to allow the possibility of exploring the consequences of varying sample
@@ -75,7 +71,7 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
 # alternative:          a character string describing the alternative hypothesis (always
 #                       "true squared Euclidean distance between the contracted profiles is greater than zero").
 
-# References: citar papers en construcció
+# References: citar papers en construccio
 #
 # See Also:     internal.fitGOProf, simPQIntersect, simSeriesPQIntersect
 #
@@ -144,20 +140,18 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
             # compare a profile with a subset of it
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(pqn0))
             #d <- dEuclid2(contrPn, contrPn0 <- contractedProfile.default(pqn0))
-            stat <- chiRestrict(d2=d, pCommon=pn, n=n, m=n0, nsims=nsims, ab.approx=ab.approx)
+            stat <- chiRestrict(d2=d, pCommon=pn, n=n, m=n0, ab.approx=ab.approx)
             m <- n0
-        }
-        else if (is.null(pqn0)) {
+        } else if (is.null(pqn0)) {
             # compare two disjoint profiles (no gens in common)
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
-            stat <- chiDisjoint(d2=d, pCommon=(n*pn+m*qm)/(n+m), n=n, m=m, nsims=nsims, ab.approx=ab.approx)
-        }
-        else {
+            stat <- chiDisjoint(d2=d, pCommon=(n*pn+m*qm)/(n+m), n=n, m=m, ab.approx=ab.approx)
+        } else {
             # compare two intersecting profiles (some genes are specific of pn, some are specific of qm, and some common genes are profiled in pqn0)
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
             stat <- chiIntersect(d2=d, pCommon=(n*pn+m*qm-n0*pqn0)/(n+m-n0),
                 n=n, m=m, pq=pqn0, n0=n0,
-                nsims=nsims, ab.approx=ab.approx)
+                ab.approx=ab.approx)
             #contrPn0 <- contractedProfile.default(pqn0)
         }
         dgf <- attr(stat,"df")
@@ -166,25 +160,22 @@ internal.compareGOProf <- function(pn, qm, pqn0, n, m, n0,
         attr(method,"argument") <- method
         method <- "chi-square statistic (affine approximation n*d2 aprox. a*X2+b)"
         pvalue <- pchisq(stat,df=attr(stat,"df"),lower.tail=F)
-    }
-    else {
+    } else {
         if (is.null(qm)) {
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(pqn0))
-            #d <- dEuclid2(contrPn, contrPn0 <- contractedProfile.default(pqn0))
-            pvalue <- pvalueRestrictLinCombChisq(d, pCommon=pn, n=n, m=n0, nsims = nsims, attrs=T)
+            pvalue <- pvalueRestrictLinCombChisq(d, pCommon=pn, n=n, m=n0, attrs=T)
             stat <- (n*n0/(n+n0)) * d
             names(stat) <- "(n*n0/(n+n0)) * d2"
             m <- n0
-        }
-        else if (is.null(pqn0)) {
+        } else if (is.null(pqn0)) {
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
-            pvalue <- pvalueExcludingLinCombChisq(d, pCommon=(n*pn+m*qm)/(n+m), n=n, m=m, nsims = nsims, attrs=T)
+            pvalue <- pvalueExcludingLinCombChisq(d, pCommon=(n*pn+m*qm)/(n+m), n=n, m=m, attrs=T)
             stat <- (n*m/(n+m)) * d
             names(stat) <- "(n*m/(n+m)) * d2"
         }
         else {
             d <- dEuclid2(contrPn, contrQm <- contractedProfile.default(qm))
-            pvalue <- pvalueIntersectLinCombChisq(d, pCommon=(n*pn+m*qm-n0*pqn0)/(n+m-n0), n=n, m=m, pq=pqn0, n0=n0, nsims=nsims, attrs=T)
+            pvalue <- pvalueIntersectLinCombChisq(d, pCommon=(n*pn+m*qm-n0*pqn0)/(n+m-n0), n=n, m=m, pq=pqn0, n0=n0, attrs=T)
             #contrPn0 <- contractedProfile.default(pqn0)
             stat <- (n*m/(n+m)) * d
             names(stat) <- "(n*m/(n+m)) * d2"

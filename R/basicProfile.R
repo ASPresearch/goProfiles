@@ -34,9 +34,10 @@ oneProfile<-function(GOTermsList, onto, level=2, multilevels=NULL,
       else
         funcProfile <-funcProfile[funcProfile!=0] # rawProfile yields a vector
     }
-    attr(funcProfile,"numGenes")<-length(ancestorsList)
-                                        # use length(ancestorsList) instead of length(GOTermsList) to account for the cases where ancestors are missing in "onto"
-                                        # attr(GOTermsList,"numGenes")
+    attr(funcProfile,"numGenes")<-attr(GOTermsList,"numGenes")
+                                        # have been erroneously using length(ancestorsList) instead of length(GOTermsList) to account for the cases where ancestors are missing in "onto"
+                                        # Right one is attr(GOTermsList,"numGenes")
+                                        # Should be computed separatedly for ech ontology (it mey differ)
     attr(funcProfile,"numNAs")<-attr(GOTermsList,"numNAs")
     attr(funcProfile,"ontology")<-onto}
   class(funcProfile) <-c("BasicGOProfile", class(funcProfile))

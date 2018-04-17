@@ -1,7 +1,6 @@
 `internal.fitGOProf` <-
 function(pn, p0, n = attr(pn,"ngenes"),
-    method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95,
-    nsims = 10000)
+    method = "lcombChisq", ab.approx = "asymptotic", confidence = 0.95)
 {
 # Is the "sample" GO profile pn just a random sample taken from the "population" GO profile p0?
 # Description:
@@ -9,7 +8,7 @@ function(pn, p0, n = attr(pn,"ngenes"),
 # asymptotic properties of the squared euclidean distance between the contracted versions of pn and p0
 #
 # Usage:
-#   internal.fitGOProf(pn, p0, n = attr(pn,"ngenes"), method = "lcombChisq", confidence = 0.95, nsims = 10000)
+#   internal.fitGOProf(pn, p0, n = attr(pn,"ngenes"), method = "lcombChisq", confidence = 0.95)
 #
 # Arguments:
 # pn:           a numeric vector representing a "sample" expanded GO profile.
@@ -26,8 +25,6 @@ function(pn, p0, n = attr(pn,"ngenes"),
 # method:       the approximation method to the sampling distribution under the null hypothesis "p = p0", where p is the
 #               "true" population profile originating pn. See the 'Details' section below
 # confidence:   the confidence level of the confidence interval in the result
-# nsims         some inferential methods require a simulation step; the number of simulation replicates is specified with
-#               this parameter
 #
 # Details:
 # If p stands for the profile originating the sample profile pn and d(,) for the squared euclidean distance, 
@@ -59,7 +56,7 @@ function(pn, p0, n = attr(pn,"ngenes"),
 # alternative:          a character string describing the alternative hypothesis (always
 #                       "true squared Euclidean distance between the contracted profiles is greater than zero").
 #
-# References: citar papers en construcció
+# References: citar papers en construccio
 #
 # See Also:     compareGOProfiles, simPnP0, simSeriesPnP0
 #
@@ -106,7 +103,7 @@ function(pn, p0, n = attr(pn,"ngenes"),
     attr(contrPn,"ngenes") <- n
     attr(contrP0,"ngenes") <- Inf
     if (pmatch(method,"chi-square",nomatch=F)) {
-        stat <- chiPnP0Correct(d2=d, p0=p0, n=n, nsims=nsims, ab.approx=ab.approx)
+        stat <- chiPnP0Correct(d2=d, p0=p0, n=n, ab.approx=ab.approx)
         names(stat) <- "(n*d2 - b) / a"
         parameters <- c(attr(stat,"a"),attr(stat,"b"),attr(stat,"df"))
         names(parameters) <- c("a","b","df")
@@ -121,8 +118,8 @@ function(pn, p0, n = attr(pn,"ngenes"),
         #names(parameters) <- paste("coef",1:length(parameters),sep="")
         attr(method,"argument") <- method
         method <- "linear combination of chi-squares statistic"
-        #pvalue <- pvaluePnP0LinCombChisq(d, p0=p0, n=n, betas=parameters, nsims = nsims)
-        pvalue <- pvaluePnP0LinCombChisq(d, p0=p0, n=n, nsims = nsims, attrs=T)
+        #pvalue <- pvaluePnP0LinCombChisq(d, p0=p0, n=n, betas=parameters)
+        pvalue <- pvaluePnP0LinCombChisq(d, p0=p0, n=n, attrs=T)
         parameters <- attr(pvalue,"betas")
         names(parameters) <- paste("coef",1:length(parameters),sep="")
     }
